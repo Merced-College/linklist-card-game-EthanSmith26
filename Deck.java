@@ -1,34 +1,35 @@
-import java.util.Random;
+import java.util.LinkedList;
+import java.util.Collections;
 
 public class Deck {
-    public static void main(String[] args) {
-        String[] SUITS = { "Clubs", "Diamonds", "Hearts", "Spades" };
-        String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+    private LinkedList<Card> deck;
 
-        LinkList cardDeck = new LinkList();
+    public Deck() {
+        deck = new LinkedList<>();
 
-        // Create cards and add to the deck
-        for (String suit : SUITS) {
-            for (int i = 0; i < RANKS.length; i++) {
-                int value = (i < 9) ? i + 2 : 10; // Assign card values (Ace can be handled differently if needed)
-                cardDeck.add(new Card(suit, RANKS[i], value, ""));
+        // Add cards to the deck
+        String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
+        int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+
+        for (String suit : suits) {
+            for (int i = 0; i < ranks.length; i++) {
+                deck.add(new Card(suit, ranks[i], values[i], ranks[i] + suit.charAt(0) + ".gif"));
             }
         }
-
-        // Shuffle the deck
-        shuffle(cardDeck);
-
-        // Print shuffled deck
-        System.out.println("Shuffled deck:");
-        cardDeck.displayList();
     }
 
-    // Shuffle method for LinkList (example logic)
-    private static void shuffle(LinkList list) {
-        Random rand = new Random();
-        for (int i = 0; i < list.size(); i++) {
-            int randomIndex = rand.nextInt(list.size());
-            list.swap(i, randomIndex); // Assume swap is implemented in LinkList
+    public void shuffle() {
+        Collections.shuffle(deck); // Shuffle the linked list
+    }
+
+    public Card dealCard() {
+        return deck.isEmpty() ? null : deck.removeFirst(); // Deal one card from the top
+    }
+
+    public void displayDeck() {
+        for (Card card : deck) {
+            System.out.println(card);
         }
     }
 }
