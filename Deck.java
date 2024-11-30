@@ -32,4 +32,9 @@ public class Deck {
             System.out.println(card);
         }
     }
+
+    public int remainingCards() {
+        return deck.size();
+    }
+
 }
