@@ -1,10 +1,10 @@
 
-public class LinkList
+public class LinkedList
 {
 	private Link first;            // ref to first link on list
 
 	//-------------------------------------------------------------
-	public LinkList()              // constructor
+	public LinkedList()              // constructor
 	{
 		first = null;               // no links on list yet
 	}
@@ -35,6 +35,7 @@ public class LinkList
 		return current;                    // found it
 	}
 	//-------------------------------------------------------------
+	@SuppressWarnings("unlikely-arg-type")
 	public Link delete(Card cardToFind)    // delete link with given key
 	{                           // (assumes non-empty list)
 		Link current = first;              // search for link
